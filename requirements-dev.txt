@@ -1,0 +1,6 @@
+-r requirements.txt
+pytest>=8.2
+httpx>=0.27
+azure-identity>=1.19
+azure-keyvault-secrets>=4.9
+azure-storage-blob>=12.24

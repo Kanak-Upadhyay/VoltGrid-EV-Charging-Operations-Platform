@@ -1,0 +1,29 @@
+services:
+  mysql:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: voltgrid
+      MYSQL_USER: voltgrid
+      MYSQL_PASSWORD: chargeops
+      MYSQL_ROOT_PASSWORD: rootchargeops
+    ports:
+      - "3307:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-prootchargeops"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: mysql+pymysql://voltgrid:chargeops@mysql:3306/voltgrid
+      JWT_SECRET: dev-only-change-in-azure-key-vault
+      SEED_ON_STARTUP: "true"
+      ALLOW_METER_SIMULATION: "true"
+      RUN_RECONCILER: "true"
+      MYSQL_SSL: "false"
+    depends_on:
+      mysql:
+        condition: service_healthy

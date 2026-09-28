@@ -1,0 +1,22 @@
+### Driver
+POST http://127.0.0.1:8000/auth/login
+Content-Type: application/json
+
+{
+  "email": "driver@voltgrid.local",
+  "password": "VoltGrid#2026"
+}
+
+### Nearby Mumbai
+GET http://127.0.0.1:8000/sites/nearby?lat=19.09&lng=72.87&radius_km=12
+Authorization: Bearer {{token}}
+
+### Meter reading
+POST http://127.0.0.1:8000/devices/meter
+Content-Type: application/json
+X-Device-Key: device-VG-BS-01
+
+{
+  "connector_id": 1,
+  "cumulative_kwh": "1032.000"
+}

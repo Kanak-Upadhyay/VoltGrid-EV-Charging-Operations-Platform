@@ -1,0 +1,14 @@
+.venv/
+venv/
+env/
+__pycache__/
+.pytest_cache/
+.env
+*.db
+exports/
+.coverage
+htmlcov/
+*.pyc
+CACHEDIR.TAG
+pyvenv.cfg
+public-url.txt
